@@ -1,0 +1,4 @@
+venv/
+
+super_user.txt
+db.sqlite3

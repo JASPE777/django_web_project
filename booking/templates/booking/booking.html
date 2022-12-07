@@ -1,0 +1,45 @@
+{% extends 'web_project_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">  
+
+<div class="row" style= "background-color: black; margin: 40px -100px 40px;">
+
+{% for Artist in artists %}
+        <div class="col-md-6">
+
+        <div class="card" style="background-color: black; width: 80%; margin: 50px 60px 50px; border: solid; align: center">
+
+            <img src="{{Artist.picture.url}}" class="card-img-top" style="border: solid">
+                
+            <div class="card-body" style="color: white; text-align: center; height: 15px; margin: -23px 0px 360px;">
+                <br>
+                    
+                <h5 class="card-title" style="font-weight: bold;">- {{Artist.name}} -</h5>
+                
+                
+                <a href="{{Artist.instagram}}"><img src="{% static 'web_project_app/img/icons/instagram.png' %}" width="45" height="45" color="black"></a>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <a href="{{Artist.soundcloud}}"><img src="{% static 'web_project_app/img/icons/soundcloud.png' %}" width="45" height="45" color="black"></a>
+                <br>
+                <div class="card-text" style="align=left">- <h6 text-align: left;>{{Artist.bio}} -</h6></div>
+               
+            </div>
+            
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;   
+                
+        </div>  
+        
+    </div>
+    
+
+   
+{% endfor %}
+    
+    </div>
+    </div> 
+{% endblock %}

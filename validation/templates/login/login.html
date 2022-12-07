@@ -1,0 +1,46 @@
+{% extends 'web_project_app/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+    
+
+<form method="post" action="" style="color: white; margin: 40px 500px 40px;">
+    
+
+        {% csrf_token %}
+
+        <div style="background-color: black; width: 100%; margin: auto; border: solid; text-align: left">
+
+
+            {% if messages %}
+
+            {% for message in messages %}
+
+            <span class="alert alert-{{message.tags}}"> {{message}} </span>
+                
+
+            {% endfor %}    
+
+            {% endif %}
+
+        </br></br></br>
+
+
+        {{form|crispy}}
+        <div  style="text-align: center">
+        <button type="submit" class="btn btn-success">Login</button> </br>
+    </div>
+    </br>
+
+    
+</div>
+
+</form>
+
+
+{% endblock %}

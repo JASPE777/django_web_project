@@ -1,0 +1,77 @@
+<table class="table table-bordered" style="color: white; background-color: #AF7AC5;">
+
+    <thead style="color: #82E0AA">
+
+        <tr>
+            <th colspan="3" class="text-center">
+
+                SHOPPING CART
+
+            </th>
+
+        </tr>
+
+        <tr>
+
+            <th>Producto.</th>
+            <th>Cant.</th>
+            <th>Sub.Total.</th>
+
+        </tr>
+
+
+
+    </thead>
+
+    <tbody>
+        {% if request.session.cart.items %}
+            {% for key, value in request.session.cart.items %}
+                <tr class="text-center" style="color: #82E0AA">
+
+                    <td >{{value.name}}</td>
+                    <td>{{value.amount}}</td>
+
+                    <td>
+                        <a href="{% url 'cart:add' value.product_id %}" class="btn btn-sm btn-success">+</a>
+                        <a href="{% url 'cart:subtract' value.product_id %}" class="btn btn-sm btn-success">-</a><br/>
+
+                        {{value.price}} $
+
+                    </td>
+                    
+                    
+
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+
+                <td colspan="3">
+                    <div class="alert alert-danger text-center"> 
+                        Sin Productos.
+                    </div>
+                </td>
+
+            </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" style="color: #82E0AA">
+
+                Total: {{amount_total_cart}} U$
+
+            </td>
+        </tr>
+        {% if request.session.cart.items %}
+        <tr><td colspan="3" style="text-align: center"> 
+                
+            <a href='../orders' class="btn btn-sm btn-success"> Comprar </a>
+                
+                
+        </td></tr>
+        {% endif %}
+
+    </tfoot>
+
+</table>

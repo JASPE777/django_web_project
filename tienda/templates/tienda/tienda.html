@@ -1,0 +1,46 @@
+{% extends 'web_project_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">  
+<div style="float:right;">
+ 
+    {% if request.user.is_authenticated %}
+    
+        {% include "cart/widget.html" %}       
+
+    {% else %}
+
+        <div class= "alert alert-danger text-center"> Iniciar Sesión para hacer tu compra 🛒 </div>
+
+    {% endif %}
+
+</div>
+<div class="row" style= "background-color: black; margin: 40px -90px 40px;">
+
+{% for Product in products %}
+        <div class="col-md-3">
+
+        <div class="card" style="background-color: black; width: 100%; margin: 20px 0px 20px; border: solid">
+
+            <img src="{{Product.picture.url}}" class="card-img-top" style="border: solid">
+                
+            <div class="card-body" style="color: white; text-align: center; height: 10px; margin: -23px 0px 3px;">
+                    
+                <h7 class="card-title" style="font-weight: bold;">- {{Product.name}} -</h7>
+                <h7 class="card-text" style="font-weight: bold;">&nbsp;&nbsp;[{{Product.price}}$USD]</h7>
+
+            </div>
+            <div class="card-footer text-center" > 
+                <br>
+                <a href="{% url 'cart:add' Product.id %}" class="btn btn-succes" style="background-color: green">Add to Cart </a>
+            </div>
+                
+        </div>  
+    </div>
+{% endfor %}
+    </div>
+    </div> 
+{% endblock %}
